@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DiscoverScreen extends StatelessWidget {
   const DiscoverScreen({Key? key}) : super(key: key);
@@ -8,7 +9,11 @@ class DiscoverScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: Center(
-          child: Text("Home"),
+          child: TextButton(
+              onPressed: () {
+                Get.toNamed("/match");
+              },
+              child: Text("Home")),
         ),
       ),
     );
