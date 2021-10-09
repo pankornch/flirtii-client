@@ -27,7 +27,7 @@ class Routes {
   List<GetPage<dynamic>> getPages = pages.map((e) => e.route).toList();
 
   String getInitialPage() {
-    final token = "";
+    final token = "abc";
     if (token == "") {
       return pages.firstWhere((element) => element.name == "SignIn").route.name;
     }

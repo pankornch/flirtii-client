@@ -54,6 +54,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
+                        onTap: (){
+                          Get.toNamed("/discover");
+                        },
                         child: Text("forgot password ?"),
                       )
                     ],
