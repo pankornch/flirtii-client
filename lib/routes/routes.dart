@@ -1,4 +1,5 @@
 import 'package:flirtii/screens/discover/discover_screen.dart';
+import 'package:flirtii/screens/get_start/get_start_screen.dart';
 import 'package:flirtii/screens/sign_in/sign_in_screen.dart';
 import 'package:flirtii/screens/sign_up/sign_up_screen.dart';
 import 'package:get/route_manager.dart';
@@ -22,6 +23,9 @@ class Routes {
     RouteProps(
         name: "SignUp",
         route: GetPage(name: "/sign_up", page: () => SignUpScreen())),
+    RouteProps(
+        name: "GetStart",
+        route: GetPage(name: "/get_start", page: () => GetStartScreen())),
   ];
 
   List<GetPage<dynamic>> getPages = pages.map((e) => e.route).toList();
