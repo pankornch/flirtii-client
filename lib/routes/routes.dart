@@ -1,6 +1,7 @@
 import 'package:flirtii/screens/chats/chat_by_id/chat_by_id_screen.dart';
-import 'package:flirtii/screens/discover/discover_screen.dart';
 import 'package:flirtii/screens/get_start/get_start_screen.dart';
+import 'package:flirtii/screens/home/home_screens.dart';
+import 'package:flirtii/screens/profile/profile_screen.dart';
 import 'package:flirtii/screens/match/match_screen.dart';
 import 'package:flirtii/screens/notifications/notifications_screen.dart';
 import 'package:flirtii/screens/sign_in/sign_in_screen.dart';
@@ -17,9 +18,8 @@ class RouteProps {
 class Routes {
   static List<RouteProps> pages = [
     RouteProps(
-        name: "Discover",
-        route: GetPage(
-            name: "/discover", page: () => DiscoverScreen(), title: "Home")),
+        name: "Home",
+        route: GetPage(name: "/home", page: () => HomeScreen(), title: "Home")),
     RouteProps(
         name: "SignIn",
         route: GetPage(name: "/sign_in", page: () => SignInScreen())),
@@ -39,6 +39,9 @@ class Routes {
     RouteProps(
         name: "ChatById",
         route: GetPage(name: "/chat/:id", page: () => ChatByIdScreen())),
+    RouteProps(
+        name: "Profile",
+        route: GetPage(name: "/profile/:id", page: () => ProfileScreen())),
   ];
 
   List<GetPage<dynamic>> getPages = pages.map((e) => e.route).toList();
@@ -49,6 +52,6 @@ class Routes {
       return pages.firstWhere((element) => element.name == "SignIn").route.name;
     }
 
-    return pages.firstWhere((element) => element.name == "Discover").route.name;
+    return pages.firstWhere((element) => element.name == "Home").route.name;
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flirtii/configs/constants.dart';
 import 'package:flirtii/screens/notifications/widgets/card.dart';
-import 'package:flirtii/shared/MainCotainer.dart';
 import 'package:flutter/material.dart';
 
 class NotificationScreen extends StatefulWidget {
