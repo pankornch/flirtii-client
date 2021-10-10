@@ -17,12 +17,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
       appBar: AppBar(
         title: Text(
           "Notifications",
-          style: TextStyle(
-            color: kMainDarkColor,
-          ),
+          style: TextStyle(),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: kMainPurpleColor,
         iconTheme: IconThemeData(
           color: kMainDarkColor, //change your color here
         ),

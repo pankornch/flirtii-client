@@ -1,4 +1,5 @@
 import 'package:flirtii/configs/constants.dart';
+import 'package:flirtii/shared/CircleContainer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,7 @@ class NotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 5),
@@ -30,23 +32,33 @@ class NotificationCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(999),
-              child: Image.network(
-                "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-                width: 70,
-                height: 70,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               children: [
-                Text("Matylda Navarro",
-                    style: TextStyle(
-                      fontSize: 18,
-                    )),
-                Text("Liked 1 minute ago"),
+                CircleContainer(
+                  size: 70,
+                  child: Image.network(
+                    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                SizedBox(
+                  width: 14,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: size.width * 0.4,
+                      child: Text("Matylda Navarro",
+                          softWrap: false,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 18,
+                          )),
+                    ),
+                    Text("Liked 1 minute ago"),
+                  ],
+                ),
               ],
             ),
             Container(

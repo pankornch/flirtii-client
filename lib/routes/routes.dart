@@ -1,3 +1,4 @@
+import 'package:flirtii/screens/chats/chat_by_id/chat_by_id_screen.dart';
 import 'package:flirtii/screens/discover/discover_screen.dart';
 import 'package:flirtii/screens/get_start/get_start_screen.dart';
 import 'package:flirtii/screens/match/match_screen.dart';
@@ -35,6 +36,9 @@ class Routes {
         name: "Notifications",
         route:
             GetPage(name: "/notifications", page: () => NotificationScreen())),
+    RouteProps(
+        name: "ChatById",
+        route: GetPage(name: "/chat/:id", page: () => ChatByIdScreen())),
   ];
 
   List<GetPage<dynamic>> getPages = pages.map((e) => e.route).toList();

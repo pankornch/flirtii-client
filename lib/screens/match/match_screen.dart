@@ -1,4 +1,5 @@
 import 'package:flirtii/configs/constants.dart';
+import 'package:flirtii/shared/CircleContainer.dart';
 import 'package:flutter/material.dart';
 
 class MatchScreen extends StatelessWidget {
@@ -29,30 +30,22 @@ class MatchScreen extends StatelessWidget {
                 Positioned(
                   top: size.height * 0.1,
                   left: 50,
-                  child: Container(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(size.width),
-                      child: Image.network(
-                        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-                        width: 150,
-                        height: 150,
-                        fit: BoxFit.cover,
-                      ),
+                  child: CircleContainer(
+                    size: 150,
+                    child: Image.network(
+                      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 Positioned(
                   top: size.height * 0.1,
                   right: 50,
-                  child: Container(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(size.width),
-                      child: Image.network(
-                        "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80",
-                        width: 150,
-                        height: 150,
-                        fit: BoxFit.cover,
-                      ),
+                  child: CircleContainer(
+                    size: 150,
+                    child: Image.network(
+                      "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80",
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

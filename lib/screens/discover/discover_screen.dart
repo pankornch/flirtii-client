@@ -1,11 +1,11 @@
+import 'package:flirtii/screens/chats/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
-// import 'package:flirtii/screens/sign_in/sign_in_screen.dart';
 import 'package:flirtii/screens/discover/widgets/discover.dart';
 
 final pages = [
   Discover(),
-  Discover(),
+  ChatScreen(),
   Discover(),
   Discover(),
 ];
@@ -23,7 +23,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(child: pages[currentIndex]),
+      body: SafeArea(child: pages[currentIndex]),
       bottomNavigationBar: DotNavigationBar(
         currentIndex: currentIndex,
         // dotIndicatorColor: Colors.green,
