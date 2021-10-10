@@ -65,6 +65,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     height: 32,
                   ),
                   GestureDetector(
+                    onTap: () {
+                      Get.toNamed("get_start");
+                    },
                     child: Container(
                       width: double.infinity,
                       padding: EdgeInsets.all(12),

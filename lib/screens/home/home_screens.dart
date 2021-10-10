@@ -1,18 +1,18 @@
+import 'package:flirtii/configs/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
-// import 'package:flirtii/screens/sign_in/sign_in_screen.dart';
-import 'package:flirtii/screens/discover/widgets/discover.dart';
+import 'package:flirtii/screens/discover/discover.dart';
 
 final pages = [Discover(),Discover(),Discover(),Discover(),];
 
-class DiscoverScreen extends StatefulWidget {
-  DiscoverScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _DiscoverScreenState createState() => _DiscoverScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _DiscoverScreenState extends State<DiscoverScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
 
   @override
@@ -22,10 +22,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         child: pages[currentIndex]
       ),
       bottomNavigationBar: DotNavigationBar(
+        // backgroundColor: Colors.red,
+        unselectedItemColor:Colors.grey[500],
         currentIndex: currentIndex,
-        // dotIndicatorColor: Colors.green,
-        // unselectedItemColor: Colors.red,
-        // selectedItemColor: Colors.red,
         onTap: (i) {
           setState(() {
             currentIndex = i;
@@ -35,25 +34,25 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           /// explore
           DotNavigationBarItem(
             icon: Icon(Icons.explore),
-            selectedColor: Colors.purple,
+            selectedColor: kMainPurpleColor,
           ),
 
           /// question_answer
           DotNavigationBarItem(
             icon: Icon(Icons.question_answer),
-            selectedColor: Colors.pink,
+            selectedColor: kMainPurpleColor,
           ),
 
           /// favorite
           DotNavigationBarItem(
             icon: Icon(Icons.favorite),
-            selectedColor: Colors.orange,
+            selectedColor: kMainPurpleColor,
           ),
 
           /// Profile
           DotNavigationBarItem(
             icon: Icon(Icons.person),
-            selectedColor: Colors.teal,
+            selectedColor: kMainPurpleColor,
           ),
         ],
       ),
