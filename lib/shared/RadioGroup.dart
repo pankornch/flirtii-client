@@ -12,11 +12,13 @@ class RadioGroup extends StatefulWidget {
   final List<OptionProps> options;
   final String? title;
   final Function? onChange;
+  final int? selected;
   const RadioGroup({
     Key? key,
     required this.options,
     this.title,
     this.onChange,
+    this.selected = 0,
   }) : super(key: key);
 
   @override
@@ -25,6 +27,14 @@ class RadioGroup extends StatefulWidget {
 
 class _RadioGroupState extends State<RadioGroup> {
   int selectIndex = 0;
+
+  @override
+  void initState() {
+    setState(() {
+      selectIndex = widget.selected!;
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

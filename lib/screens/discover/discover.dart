@@ -60,7 +60,7 @@ class _DiscoverState extends State<Discover> {
                           decoration: InputDecoration(
                             hintText: 'Search',
                             contentPadding:
-                                EdgeInsets.only(left: 10, bottom: 10),
+                                EdgeInsets.only(left: 24, bottom: 10),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
                             ),
@@ -90,19 +90,11 @@ class _DiscoverState extends State<Discover> {
                     width: 380,
                     child: Swiper(
                       itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            boxShadow: [
-                              BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.1)),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(24),
-                            child: Image.network(
-                              "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-                              fit: BoxFit.cover,
-                            ),
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(24),
+                          child: Image.network(
+                            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+                            fit: BoxFit.cover,
                           ),
                         );
                       },
@@ -121,13 +113,6 @@ class _DiscoverState extends State<Discover> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     color: Color.fromRGBO(0, 0, 0, 0.1),
-                      //     spreadRadius: 4,
-                      //     blurRadius: 4,
-                      //   ),
-                      // ],
                     ),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 50.0, sigmaY: 50.0),
@@ -158,10 +143,14 @@ class _DiscoverState extends State<Discover> {
                               color: Colors.white,
                             ),
                           ),
-                          Text(
-                            "Lorem ipsum dolor sit amet",
-                            style: TextStyle(
-                              color: Colors.white,
+                          Container(
+                            width: size.width * 0.75 - 75,
+                            child: Text(
+                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ],

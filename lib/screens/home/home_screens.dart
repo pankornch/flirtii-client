@@ -1,4 +1,5 @@
 import 'package:flirtii/configs/constants.dart';
+import 'package:flirtii/screens/account/account.dart';
 import 'package:flirtii/screens/chats/chat_screen.dart';
 import 'package:flirtii/screens/likes/likes_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ final pages = [
   Discover(),
   ChatScreen(),
   LikesScreen(),
+  AccountScreen(),
 ];
 
 class HomeScreen extends StatefulWidget {
@@ -28,7 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Container(child: pages[currentIndex]),
       ),
       bottomNavigationBar: DotNavigationBar(
-        // backgroundColor: Colors.red,
         unselectedItemColor: Colors.grey[500],
         currentIndex: currentIndex,
         onTap: (i) {

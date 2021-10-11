@@ -1,3 +1,4 @@
+import 'package:flirtii/screens/account/edit/edit_screen.dart';
 import 'package:flirtii/screens/chats/chat_by_id/chat_by_id_screen.dart';
 import 'package:flirtii/screens/get_start/get_start_screen.dart';
 import 'package:flirtii/screens/home/home_screens.dart';
@@ -42,6 +43,9 @@ class Routes {
     RouteProps(
         name: "Profile",
         route: GetPage(name: "/profile/:id", page: () => ProfileScreen())),
+    RouteProps(
+        name: "EditAccount",
+        route: GetPage(name: "/edit_account", page: () => EditAccountScreen())),
   ];
 
   List<GetPage<dynamic>> getPages = pages.map((e) => e.route).toList();

@@ -20,6 +20,13 @@ class Input extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: TextField(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
+            currentFocus.focusedChild?.unfocus();
+          }
+        },
         controller: controller,
         obscureText: obscureText == null ? false : obscureText!,
         enableSuggestions: false,
