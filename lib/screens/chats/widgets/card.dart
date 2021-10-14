@@ -1,16 +1,18 @@
+import 'package:flirtii/models/chat.dart';
 import 'package:flirtii/shared/CircleContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ChatCard extends StatelessWidget {
-  const ChatCard({Key? key}) : super(key: key);
+  final Chat chat;
+  const ChatCard({Key? key, required this.chat}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        Get.toNamed("/chat/1");
+        Get.toNamed("/chat/${chat.id}");
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 12),
@@ -21,7 +23,9 @@ class ChatCard extends StatelessWidget {
               children: [
                 CircleContainer(
                   child: Image.network(
-                    "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80",
+                    chat.friend?.avatar == null
+                        ? "https://i.pravatar.cc/150?u=${chat.friend!.id}"
+                        : chat.friend!.avatar!,
                     width: 70,
                     height: 70,
                     fit: BoxFit.cover,
@@ -33,7 +37,7 @@ class ChatCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Matylda Navarro",
+                    Text("${chat.friend?.firstName} ${chat.friend?.firstName}",
                         style: TextStyle(
                           fontSize: 20,
                         )),
@@ -41,7 +45,7 @@ class ChatCard extends StatelessWidget {
                       width: size.width - 150,
                       padding: new EdgeInsets.only(right: 13.0),
                       child: Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+                        "${chat.message!.text}",
                         overflow: TextOverflow.ellipsis,
                       ),
                     )

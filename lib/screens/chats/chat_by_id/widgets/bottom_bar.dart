@@ -2,8 +2,22 @@ import 'package:flirtii/configs/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ChatBottomBar extends StatelessWidget {
-  const ChatBottomBar({Key? key}) : super(key: key);
+class ChatBottomBar extends StatefulWidget {
+  final Function onSubmit;
+  ChatBottomBar({Key? key, required this.onSubmit}) : super(key: key);
+
+  @override
+  _ChatBottomBarState createState() => _ChatBottomBarState();
+}
+
+class _ChatBottomBarState extends State<ChatBottomBar> {
+  var messageController = TextEditingController();
+
+  onSubmit() async {
+    await widget.onSubmit.call(messageController.text);
+
+    messageController.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +45,7 @@ class ChatBottomBar extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextField(
+                      controller: messageController,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.zero,
                         hintText: "Type a message",
@@ -56,13 +71,16 @@ class ChatBottomBar extends StatelessWidget {
           SizedBox(
             width: 20,
           ),
-          Container(
-            height: 50,
-            child: Center(
-              child: Icon(
-                Icons.send,
-                color: kMainPurpleColor,
-                size: 30,
+          GestureDetector(
+            onTap: onSubmit,
+            child: Container(
+              height: 50,
+              child: Center(
+                child: Icon(
+                  Icons.send,
+                  color: kMainPurpleColor,
+                  size: 30,
+                ),
               ),
             ),
           )

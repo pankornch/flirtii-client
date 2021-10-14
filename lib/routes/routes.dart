@@ -7,6 +7,7 @@ import 'package:flirtii/screens/match/match_screen.dart';
 import 'package:flirtii/screens/notifications/notifications_screen.dart';
 import 'package:flirtii/screens/sign_in/sign_in_screen.dart';
 import 'package:flirtii/screens/sign_up/sign_up_screen.dart';
+import 'package:flirtii/services/getUser.dart';
 import 'package:get/route_manager.dart';
 
 class RouteProps {
@@ -50,8 +51,9 @@ class Routes {
 
   List<GetPage<dynamic>> getPages = pages.map((e) => e.route).toList();
 
-  String getInitialPage() {
-    final token = "abc";
+  Future<String> getInitialPage() async {
+    final token = GetUser().getToken();
+
     if (token == "") {
       return pages.firstWhere((element) => element.name == "SignIn").route.name;
     }

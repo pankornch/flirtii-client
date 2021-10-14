@@ -56,7 +56,8 @@ class _SharedCheckBoxState extends State<SharedCheckBox> {
                     } else {
                       selected.add(i);
                     }
-                    widget.onChange?.call(selected);
+                    widget.onChange
+                        ?.call(selected.map((e) => widget.options[e]).toList());
                   });
                 },
                 child: Row(

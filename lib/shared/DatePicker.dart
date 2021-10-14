@@ -32,10 +32,12 @@ class _DatePickerState extends State<DatePicker> {
           lastDate: DateTime(2025),
         );
 
-        if (selected != null && selected != selectedDate)
+        if (selected != null && selected != selectedDate) {
+          widget.onChange?.call(selected);
           setState(() {
             selectedDate = selected;
           });
+        }
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

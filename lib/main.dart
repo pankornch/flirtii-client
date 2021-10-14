@@ -1,35 +1,66 @@
 import 'package:flirtii/configs/constants.dart';
+import 'package:flirtii/configs/gql.dart';
 import 'package:flirtii/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import 'configs/gql.dart';
+// import 'configs/gql.dart';
 
-void main() {
-  runApp(App());
+void main() async {
+  final client = GqlConfig.client();
+  runApp(GraphQLProvider(
+    client: client,
+    child: App(),
+  ));
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
   final routes = Routes();
+  bool loading = false;
+  late String initialRoute;
+  @override
+  void initState() {
+    routes.getInitialPage().then((value) {
+      setState(() {
+        initialRoute = value;
+        loading = false;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GraphQLProvider(
-        client: GqlConfig.client,
-        child: GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            textTheme: GoogleFonts.promptTextTheme(
-              Theme.of(context).textTheme,
-            ).apply(
-              bodyColor: kMainDarkColor,
-            ),
+    if (loading) {
+      return MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: Text("loading..."),
           ),
-          getPages: routes.getPages,
-          initialRoute: routes.getInitialPage(),
-        ));
+        ),
+      );
+    }
+
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        textTheme: GoogleFonts.promptTextTheme(
+          Theme.of(context).textTheme,
+        ).apply(
+          bodyColor: kMainDarkColor,
+        ),
+      ),
+      getPages: routes.getPages,
+      initialRoute: initialRoute,
+    );
   }
 }
