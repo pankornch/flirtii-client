@@ -1,6 +1,9 @@
 import 'package:flirtii/models/user.dart';
+import 'package:flirtii/services/gql/query.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class GetUser {
   getToken() async {
@@ -11,24 +14,32 @@ class GetUser {
   }
 
   Future<User> fetchUser(GraphQLClient client) async {
-    final q = r"""
-      query {
-        me {
-          _id
-          email
-          firstName
-          lastName
-        }
-      }
-    """;
-
-    final result = await client.query(QueryOptions(document: gql(q)));
+    final result = await client.query(QueryOptions(document: GET_USER));
     final data = result.data!["me"];
-    return User(
-      id: data["_id"],
-      email: data["email"],
-      firstName: data["firstName"],
-      lastName: data["lastname"],
+    return User.fromJson(data);
+  }
+
+  isLogin() async {
+    final token = await getToken();
+    final url = Uri.parse("http://localhost:4000/graphql");
+    final headers = {
+      "content-type": "application/json",
+      "Authorization": "Bearer $token",
+    };
+    final body = {
+      'query': 'query { me { _id } }',
+    };
+
+    final res = await http.post(
+      url,
+      headers: headers,
+      body: jsonEncode(body),
     );
+
+    final data = jsonDecode(res.body)["data"];
+
+    if (data == null) return false;
+
+    return true;
   }
 }

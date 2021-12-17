@@ -26,4 +26,19 @@ class User {
     this.images,
     this.preferred,
   });
+
+  User.fromJson(Map<String, dynamic> json) {
+    this.id = json["_id"];
+    this.email = json["email"];
+    this.firstName = json["firstName"];
+    this.lastName = json["lastName"];
+    this.gender = json["gender"];
+    this.nickname = json["nickname"];
+    this.about = json["about"];
+    this.avatar = json["avatar"];
+    this.bio = json["bio"];
+    this.birthDate = json["birthDate"];
+    this.images = json["images"];
+    this.preferred = json["preferred"];
+  }
 }

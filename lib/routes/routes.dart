@@ -52,9 +52,8 @@ class Routes {
   List<GetPage<dynamic>> getPages = pages.map((e) => e.route).toList();
 
   Future<String> getInitialPage() async {
-    final token = GetUser().getToken();
-
-    if (token == "") {
+    final isLogin = await GetUser().isLogin();
+    if (!isLogin) {
       return pages.firstWhere((element) => element.name == "SignIn").route.name;
     }
 
