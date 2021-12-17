@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-// import 'configs/gql.dart';
-
 void main() async {
   final client = GqlConfig.client();
   runApp(GraphQLProvider(
@@ -23,8 +21,9 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   final routes = Routes();
-  bool loading = false;
+  bool loading = true;
   late String initialRoute;
+
   @override
   void initState() {
     routes.getInitialPage().then((value) {
@@ -40,9 +39,10 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     if (loading) {
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: Center(
-            child: Text("loading..."),
+            child: CircularProgressIndicator(),
           ),
         ),
       );
@@ -50,7 +50,6 @@ class _AppState extends State<App> {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.promptTextTheme(
