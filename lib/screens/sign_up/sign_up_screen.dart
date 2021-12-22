@@ -1,8 +1,10 @@
 import 'package:flirtii/configs/constants.dart';
+import 'package:flirtii/services/gql/mutation.dart';
 import 'package:flirtii/shared/MainCotainer.dart';
 import 'package:flirtii/shared/input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -12,6 +14,12 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,15 +42,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 32,
                   ),
                   Input(
-                    hintText: "First Name",
-                    labelText: "First Name",
+                    hintText: "First name",
+                    labelText: "First name",
+                    controller: firstNameController,
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Input(
-                    hintText: "Last Lame",
-                    labelText: "Last Lame",
+                    hintText: "Last name",
+                    labelText: "Last name",
+                    controller: lastNameController,
                   ),
                   SizedBox(
                     height: 10,
@@ -50,6 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Input(
                     hintText: "Email",
                     labelText: "Email",
+                    controller: emailController,
                   ),
                   SizedBox(
                     height: 10,
@@ -57,6 +68,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Input(
                     hintText: "Password",
                     labelText: "Password",
+                    controller: passwordController,
+                    obscureText: true,
                   ),
                   SizedBox(
                     height: 10,
@@ -64,30 +77,50 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Input(
                     hintText: "Re-enter Password",
                     labelText: "Re-enter Password",
+                    controller: confirmPasswordController,
+                    obscureText: true,
                   ),
                   SizedBox(
                     height: 32,
                   ),
-                  GestureDetector(
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: kMainPinkColor,
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "SIGN UP",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
+                  Mutation(
+                    options: MutationOptions(
+                        document: SIGN_UP,
+                        onCompleted: (_) {
+                          Get.toNamed("/sign_in");
+                        }),
+                    builder: (runMutaion, _) => GestureDetector(
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: kMainPinkColor,
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "SIGN UP",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      onTap: () {
+                        runMutaion({
+                          "input": {
+                            "email": emailController.text,
+                            "password": passwordController.text,
+                            "confirmPassword": confirmPasswordController.text,
+                            "firstName": firstNameController.text,
+                            "lastName": lastNameController.text
+                          }
+                        });
+                      },
                     ),
                   ),
                 ],

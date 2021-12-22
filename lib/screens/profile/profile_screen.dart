@@ -37,12 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         late User _user;
 
         if (!result.isLoading) {
-          _user = User(
-            id: data["_id"],
-            email: data["email"],
-            bio: data["bio"],
-            nickname: data["nickname"],
-          );
+          _user = User.fromJson(data);
         }
 
         final img = "https://i.pravatar.cc/150?u";

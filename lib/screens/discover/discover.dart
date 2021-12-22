@@ -43,18 +43,11 @@ class _DiscoverState extends State<Discover> {
         final img = "https://i.pravatar.cc/150?u";
         if (!result.isLoading) {
           for (var u in data) {
-            _users.add(User(
-              id: u["_id"],
-              email: u["email"],
-              bio: u["bio"],
-              nickname: u["nickname"],
-              firstName: u["firstName"],
-            ));
+            _users.add(User.fromJson(u));
           }
         }
 
         void nextUser() {
-          print(idx);
           setState(() {
             idx = (idx + 1) % _users.length;
           });
@@ -79,9 +72,14 @@ class _DiscoverState extends State<Discover> {
                         Positioned(
                           top: 15,
                           right: 0,
-                          child: Icon(
-                            Icons.notifications,
-                            color: kMainPurpleColor,
+                          child: GestureDetector(
+                            child: Icon(
+                              Icons.notifications,
+                              color: kMainPurpleColor,
+                            ),
+                            onTap: () {
+                              Get.toNamed("notifications");
+                            },
                           ),
                         ),
                         Positioned(
@@ -201,7 +199,9 @@ class _DiscoverState extends State<Discover> {
                                     Container(
                                       width: size.width * 0.75 - 75,
                                       child: Text(
-                                        "${_users[idx].bio}",
+                                        _users[idx].bio != null
+                                            ? "${_users[idx].bio}"
+                                            : "",
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                           color: Colors.white,

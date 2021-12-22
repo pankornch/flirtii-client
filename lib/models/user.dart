@@ -37,8 +37,8 @@ class User {
     this.about = json["about"];
     this.avatar = json["avatar"];
     this.bio = json["bio"];
-    this.birthDate = json["birthDate"];
-    this.images = json["images"];
-    this.preferred = json["preferred"];
+    // this.birthDate = DateTime.tryParse(json["birthDate"]);
+    // this.images = json["images"];
+    // this.preferred = json["preferred"];
   }
 }

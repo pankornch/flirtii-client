@@ -37,7 +37,7 @@ class ChatCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("${chat.friend?.firstName} ${chat.friend?.firstName}",
+                    Text("${chat.friend?.firstName} ${chat.friend?.lastName}",
                         style: TextStyle(
                           fontSize: 20,
                         )),
@@ -45,7 +45,7 @@ class ChatCard extends StatelessWidget {
                       width: size.width - 150,
                       padding: new EdgeInsets.only(right: 13.0),
                       child: Text(
-                        "${chat.message!.text}",
+                        "${chat.lastMessage!.text}",
                         overflow: TextOverflow.ellipsis,
                       ),
                     )

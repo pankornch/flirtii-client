@@ -6,8 +6,6 @@ class UserController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
-    print("ok");
     super.onInit();
   }
 }
